@@ -6,7 +6,7 @@ const Navbar = (props) => {
     return (
         <div className={s.container}>
             <Menu/>
-            <Sidebar friends={props.state.friends}/>
+            <Sidebar friends={props.sidebar.friends}/>
         </div>
     )
 }
