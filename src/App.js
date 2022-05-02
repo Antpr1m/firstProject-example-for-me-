@@ -9,7 +9,6 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 
-
 const App = (props) => {
     return (
         <div className='app-wrapper'>
@@ -21,7 +20,8 @@ const App = (props) => {
                            element={<Profile profilePage={props.state.profilePage}
                                              dispatch={props.dispatch}/>}/>
                     <Route path="/dialogs/*"
-                           element={<Dialogs dialogsPage={props.state.dialogsPage}/>}/>
+                           element={<Dialogs dialogsPage={props.state.dialogsPage}
+                                             dispatch={props.dispatch}/>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
