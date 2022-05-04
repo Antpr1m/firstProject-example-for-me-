@@ -1,7 +1,7 @@
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import React from "react";
-import {addPostActionCreator, updateNewPostActionCreator, updateNewTextActionCreator} from "../../../redux/state";
+import {addPostCreator, updateBodyTextCreator} from "../../../redux/profile-reducer";
 
 
 
@@ -13,12 +13,12 @@ const MyPosts = (props) => {
 
     let addPost = () => {
         //props.addPost(); - было
-        props.dispatch(addPostActionCreator());
+        props.dispatch(addPostCreator());
     }
     let onPostChange = () => {
         let text = postText.current.value;
         //props.updateNewPostText(text); - было
-        props.dispatch(updateNewTextActionCreator(text));
+        props.dispatch(updateBodyTextCreator(text));
     }
 
     return (
