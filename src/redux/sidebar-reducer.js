@@ -1,10 +1,4 @@
-let initialState = {
-    friends: [
-        {name: 'Seva'},
-        {name: 'Anton'},
-        {name: 'Lena'},
-    ]
-}
+let initialState = {}
 
 const sidebarReducer = (state = initialState, action) => {
 

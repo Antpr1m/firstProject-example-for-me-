@@ -8,12 +8,10 @@ import './index.css';
 
 
 let renderEntireTree = (state) => {
-    debugger
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state}
-                     dispatch={store.dispatch.bind(store)}/>
+                <App store={store}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')

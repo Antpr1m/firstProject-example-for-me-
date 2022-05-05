@@ -1,12 +1,10 @@
 import s from './Navbar.module.css';
-import Sidebar from "./sidebar/Sidebar";
 import Menu from "./Menu/Menu";
 
-const Navbar = (props) => {
+const Navbar = () => {
     return (
         <div className={s.container}>
             <Menu/>
-            <Sidebar friends={props.sidebar.friends}/>
         </div>
     )
 }
