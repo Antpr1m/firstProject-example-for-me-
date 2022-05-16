@@ -1,0 +1,17 @@
+.usersContainer{
+    padding: 20px;
+}
+button{
+    cursor:pointer;
+}
+.usersBody:not(:last-child){
+    margin-bottom: 10px;
+}
+
+.userImage{
+    max-width: 4rem;
+}
+.userImage img{
+    width: 100%;
+}
+
