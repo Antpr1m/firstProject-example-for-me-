@@ -15,3 +15,10 @@ button{
     width: 100%;
 }
 
+.selectedPage{
+    font-weight: 700;
+}
+.usersPagination span{
+    cursor: pointer;
+}
+
