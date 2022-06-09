@@ -23,7 +23,7 @@ let mapStateToProps = (state) => {
     return {profilePage: state.profilePage}
 }
 let mapDispatchToProps = (dispatch) => {
-    return{
+    return {
         addPost: () => dispatch(addPostCreator()),
         updateNewPostText: (text) => dispatch(updatePostTextCreator(text))
 
