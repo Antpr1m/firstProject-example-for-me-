@@ -1,7 +1,12 @@
 import {Navigate} from "react-router-dom";
-import React from "react";
+import React, {Component} from "react";
+import {connect} from "react-redux";
 
 
+let mapStateToPropsForRedirect = (state) => ({
+    isAuth: state.auth.isAuth
+})
+//Class HOC
 export const withAuthRedirect = (Component) => {
     class RedirectComponent extends React.Component {
         render() {
@@ -9,5 +14,9 @@ export const withAuthRedirect = (Component) => {
             return <Component {...this.props} />
         }
     }
-    return RedirectComponent;
+    let connectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
+    return connectedAuthRedirectComponent;
 }
+
+//Functional HOC
+

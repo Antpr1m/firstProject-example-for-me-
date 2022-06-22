@@ -41,12 +41,19 @@ class ProfileContainer extends React.Component {
     }
 }
 
-let authNavigateComponent = withAuthRedirect(ProfileContainer) //HOC use
+let authRedirectComponent = withAuthRedirect(ProfileContainer) //using a HOC
+
+//чтобы не прокидывать каждый раз isAuth
+/*let mapStateToPropsForRedirect = (state) => ({
+    isAuth: state.auth.isAuth
+})*/
+/*authRedirectComponent = connect(mapStateToPropsForRedirect)(authRedirectComponent)*///connect для HOC, для доступа к state
+
+
 
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
-    isAuth: state.auth.isAuth
 })
 
-export default connect(mapStateToProps, {getProfile})(withRouter(authNavigateComponent));
+export default connect(mapStateToProps, {getProfile})(withRouter(authRedirectComponent));
 

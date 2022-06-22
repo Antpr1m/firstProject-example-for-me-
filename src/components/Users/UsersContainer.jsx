@@ -8,6 +8,7 @@ import {
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 class UsersContainer extends React.Component {
@@ -48,54 +49,17 @@ let mapStateToProps = (state) => {
     }
 }
 
-/*
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (currenPage) => {
-            dispatch(setCurrentPageAC(currenPage))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
-}
-*/
-
+//1 способ
+//доступ к isAuth и HOC for redirect
+/*let authRedirectComponent = withAuthRedirect(UsersContainer)
 export default connect(mapStateToProps,
-    {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers})(UsersContainer)
+    {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers})(authRedirectComponent)*/
+
+//2 способ
+export default withAuthRedirect(connect(mapStateToProps,
+    {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers})(UsersContainer))
 
 
-/*
-let mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users
-    }
-}
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        }
-    }
-}
-
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)*/
+//или так
+/*export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)*/
