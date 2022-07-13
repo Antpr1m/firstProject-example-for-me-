@@ -12,9 +12,9 @@ const Dialogs = (props) => {
 
 
 	let addNewMessage = (values) => {
-		props.sendMessage(values.messageText);
+		props.sendMessage(values.messageText); //Отправка значений с textarea в global state 
 	}
-
+	//Рефакторинг: создание HOC в DialogsContainer для перехода на страницу 'login'
 	/*    if(!props.isAuth) return <Navigate to={'/login'}/>*/
 
 
@@ -36,6 +36,7 @@ export default Dialogs;
 
 const AddMessageForm = (props) => {
 	return (
+		//handleSubmit обработчик для сбора данных с формы
 		<form onSubmit={props.handleSubmit} className={s.messages}>
 
 			<div>
@@ -49,4 +50,4 @@ const AddMessageForm = (props) => {
 	)
 }
 
-const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessage' })(AddMessageForm)
+const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessage' })(AddMessageForm)  //Создание HOC reduxForm для формы
