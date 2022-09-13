@@ -8,18 +8,24 @@ import {
 import React from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
+type PropsType = {
+	currentPage: number
+	pageSize: number
+	getUsers: (currentPage: number, pageSize: number) => void
 
-class UsersContainer extends React.Component {
+}
+class UsersContainer extends React.Component<PropsType> {
 	componentDidMount() {
-		this.props.getUsers(this.props.currentPage, this.props.pageSize)
+		const { currentPage, pageSize } = this.props
+		this.props.getUsers(currentPage, pageSize)
 	}
 
-	onPageChanged = (pageNumber) => {
+	onPageChanged = (pageNumber: number) => {
+		const { pageSize } = this.props
 		this.props.setCurrentPage(pageNumber);
-		this.props.getUsers(pageNumber, this.props.pageSize)
+		this.props.getUsers(pageNumber, pageSize)
 	}
 
 	render() {
@@ -57,8 +63,7 @@ export default connect(mapStateToProps,
 
 export default compose(
 	connect(mapStateToProps,
-		{ follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers }),
-	withAuthRedirect
+		{ follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers })
 )(UsersContainer)
 
 

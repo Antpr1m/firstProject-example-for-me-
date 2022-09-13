@@ -2,6 +2,8 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messages/Message";
 import { Field, reduxForm } from 'redux-form';
+import { required, maxLengthCreator } from '../../utils/validators/validators';
+import { Textarea } from '../common/formsControl/formsControls';
 
 const Dialogs = (props) => {
 	let state = props.dialogsPage;
@@ -12,7 +14,7 @@ const Dialogs = (props) => {
 
 
 	let addNewMessage = (values) => {
-		props.sendMessage(values.messageText); //Отправка значений с textarea в global state 
+		props.sendMessage(values.messageBody); //Отправка значений с textarea в global state 
 	}
 	//Рефакторинг: создание HOC в DialogsContainer для перехода на страницу 'login'
 	/*    if(!props.isAuth) return <Navigate to={'/login'}/>*/
@@ -32,16 +34,16 @@ const Dialogs = (props) => {
 	)
 }
 
-export default Dialogs;
+const maxLength10 = maxLengthCreator(10)
 
 const AddMessageForm = (props) => {
+
 	return (
 		//handleSubmit обработчик для сбора данных с формы
 		<form onSubmit={props.handleSubmit} className={s.messages}>
-
 			<div>
-				<Field component='textarea' name={'messageText'}
-					placeholder={"Enter your message"} />
+				<Field component={Textarea} name='messageBody'
+					placeholder={"Enter your message"} validate={[required, maxLength10]} />
 			</div>
 			<div>
 				<button>Send Message</button>
@@ -51,3 +53,5 @@ const AddMessageForm = (props) => {
 }
 
 const AddMessageFormRedux = reduxForm({ form: 'dialogAddMessage' })(AddMessageForm)  //Создание HOC reduxForm для формы
+
+export default Dialogs;

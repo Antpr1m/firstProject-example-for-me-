@@ -3,7 +3,7 @@ import userPhoto from "../../img/user.png";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { followAPI } from "../../api/api";
-import { toggleFollowingProgress } from "../../redux/users-reducer";
+import { toggleFollowingProgress } from "../../redux/users-reducer.ts";
 
 
 const Users = (props) => {

@@ -1,7 +1,7 @@
 import * as axios from "axios";
 
 const instance = axios.create({
-	withCredentials: true,
+	withCredentials: true,  //разрешение на отправку с домена на домен
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',
 	headers: {
 		"API-KEY": "e8abc717-65c5-4c09-bd27-dbf2ccadb3de"
@@ -44,6 +44,12 @@ export const authAPI = {
 	authMe() {
 		return instance.get('auth/me')
 			.then(response => response.data)
+	},
+	login(email, password, rememberMe = false) {
+		return instance.post(`auth/login`, { email, password, rememberMe })
+	},
+	logout() {
+		return instance.delete(`auth/login`)
 	}
 }
 
